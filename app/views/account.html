@@ -1,0 +1,57 @@
+<div class="container">
+    <h2>My Account</h2> 
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" ng-href="#/account">Profile</a></li>
+        <li><a data-toggle="tab" ng-href="#/changepass">Change Password</a></li>
+        <li><a data-toggle="tab" ng-href="#/vehicles">My Vehicles</a></li>
+        <li><button role="button" ng-click="logout()" class="btn btn-danger">Log Out</button></li>
+    </ul>  
+  <div class="tab-content">
+    <div class="tab-pane fade in active">
+        <form role="form">
+            <p class="form-group">
+                <label>Account ID</label>
+                <br/>{{user.uid}}</p>
+            <p class="form-group">
+                <label>Name:</label>
+                <input type="text" name="name" ng-model="profile.name" class="form-control" /></p>
+            <p class="form-group">
+                <label>Email:</label>
+                <br/>{{profile.email}}</p>
+        </form>
+      </div>
+  </div>
+</div> 
+
+
+
+<p class="clearfix"></p>
+<div ng-repeat="message in messages" class="alert alert-{{message.type}}">{{message.text}}</div>   
+<p>Role: {{profile}}</p>   
+
+
+
+<!--
+<div class="col-md-4">
+<form>
+  <h3>Change Email</h3>
+    <p class="form-group">
+        <label>Old Email:</label>
+        <input type="text" ng-keypress="clear()" ng-model="oldEmail" class="form-control" />
+  </p>
+
+  <p class="form-group">
+    <label>New Email:</label>
+    <input type="text" ng-keypress="clear()" ng-model="newEmail" class="form-control" />
+  </p>
+
+  <p class="form-group">
+    <label>Password:</label>
+    <input type="password" ng-keypress="clear()" ng-model="pass" class="form-control" />
+  </p>
+
+  <button class="btn btn-primary" ng-click="changeEmail(pass, newEmail)">update email</button>
+</form>
+</div>
+-->
+

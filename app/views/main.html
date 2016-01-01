@@ -1,0 +1,168 @@
+<div id="searchjamb" class="jumbotron" align="center">
+<form class="form-horizontal" name="searchForm" ng-submit="searchGarage(location, type)">
+    <div class="form-group"> 
+        <div class="col-sm-12" >
+             <h1 style="font-size:40px">Search a garage</h1>
+            <input type="text" id="txtbox" name="searchForm" class="form-control" ng-model="query[queryBy]" placeholder="Search by location, garage etc.">
+        </div>
+    </div>
+    </form>
+</div>
+<div id="lista" class="container">
+    <div class="row row-content">
+        <ul class="media-list">
+            <li class="media" ng-repeat="garage in garages | toArray | filter:query">
+                <div class="col-xs-12 col-sm-3 col-sm-offset-1">
+                   <div class="media-left media-middle">
+                    <img class="media-object img-thumbnail" ng-src={{garage.image}} alt="GARAGES">
+                   </div>                   
+                </div>
+                 <div class="col-xs-12 col-sm-6 ">
+                <div class="media-body">
+                    <h2 class="media-heading">{{garage.name}}
+                        <small>{{garage.address}}, </small>
+                        <small>{{garage.city}}</small>
+                    </h2>
+                    <p>{{garage.description}}</p>
+                    <p>{{garage.$key}}</p>
+                    <p>{{garage.types}}</p>
+                    
+                    </hr>
+                </div>
+                </div>
+        <div class="col-xs-12 col-sm-2">
+
+            <button type="submit" align="center" class="btn btn-success" ng-click="bookModal(garage)" ng-show="ownerShow">Book Now</button>
+        </div>
+        </li>
+    </ul>
+</div>
+<!--<div class="row row-content">
+    {{garages}}
+    </div>-->
+</div>
+
+<script type="text/ng-template" id="selectDateTime.html">
+   
+			<div class="modal-header">
+                <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title">Select date and time</h3>
+			</div>
+			<div class="modal-body">
+				<div class="container-fluid">
+                    <div class="row">
+						<div class="col-md-6">
+                            <label for="date" class="control-label">Date:</label>
+                            <p class="input-group" style="width:230px">
+                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="mydate" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+                                </span></p>
+                            <label for="time" class="control-label">Time:</label>
+                            <uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" min="min" max="max" show-meridian="ismeridian"></uib-timepicker>
+                          
+                        </div>
+                    
+                    <div class="col-md-6" ng-show="isAble">
+                        
+                        </br>   
+                        <h4>Your next maintenance is</h4>
+                        <h5>at <strong>{{name}} </strong>,</h5>
+                        <h5>in <strong>{{location}} </strong>,</h5>
+                        <h5>on <strong> {{mydate| date}}</strong>,</h5>
+                        <h5>at <strong>{{mytime | date:'shortTime'}}</strong></h5>
+                    </div>
+                    
+                </div>
+                </br>
+                        <div class="alert alert-{{messages.type}}">{{messages.text}}</div>
+                </div>
+			</div>
+			<div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-show="!isAble" ng-click="check(mydate, mytime)">Check Availability</button>
+                <button class="btn btn-success" type="button" ng-show="isAble" ng-click="book(mydate, mytime)">Complete Booking</button>
+
+			</div>
+            
+</script>
+<!--ng-disabled="!isAble"
+<script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Select date and time</h3>
+        </div>
+        <div class="modal-body">
+            <p>Garage Name:{{name}}</p>
+            <p>Garage Location:{{location}}</p>
+            <p>Date: {{mydate| date}}</p> 
+            <p>Time: {{mytime | date:'shortTime' }}</p>
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="mydate" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+                </span>
+            </p>
+            <uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" min="min" max="max" show-meridian="ismeridian"></uib-timepicker>
+
+           
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" type="button" ng-click="ok(mydate, mytime)">OK</button>
+            <button class="btn btn-primary" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+</script>
+-->
+  <!--  <div class="form-group">
+        <label for="location" class="col-sm-2 control-label">Service type:</label>
+        <div class="col-sm-10">
+            <select class="form-control" id="location" required>
+                <option value="">Select a service type</option>
+                <option value="Scheduled Service">Scheduled</option>
+                <option value="Change the engine oil">Change the engine oil</option>
+                <option value="Replace the oil filter">Replace the oil filter</option>
+                <option value="Replace the air filter">Replace the air filter</option>
+                <option value="Replace the fuel filter">Replace the fuel filter</option>
+                <option value="Replace the spark plugs">Replace the spark plugs</option>
+                <option value="Tune the engine">Tune the engine</option>
+                <option value="Check level and refill brake fluid">Check level and refill brake fluid</option>
+                <option value="Check level and refill power steering fluid">Check level and refill Automatic Transmission Fluid</option>
+                <option value="Grease and lubricate components">Grease and lubricate components</option>
+                <option value="Inspect and replace the timing belt if needed">Inspect and replace the timing belt if needed</option>
+                <option value="Check condition of the tires">Check condition of the tires</option>
+            </select>
+        </div>
+    </div> 
+   
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">Search Garages</button>
+        </div>
+    </div>
+-->
+
+<!--  <select class="form-control" id="location" ng-model="query[queryBy]" >
+                <option value="">Select a location</option>
+                <option value="Athens">Athens</option>
+                <option value="Thessaloniki">Thessaloniki</option>
+                <option value="Patras">Patras</option>
+                <option value="Heraklion">Heraklion</option>
+                <option value="Larissa">Larissa</option>
+                <option value="Volos">Volos</option>
+                <option value="Rhodes">Rhodes</option>
+                <option value="Ioannina">Ioannina</option>
+                <option value="Chania">Chania</option>
+                <option value="Agrinio">Agrinio</option>
+                <option value="Drama">Drama</option>
+                <option value="Chalcis">Chalcis</option>
+                <option value="Trikala">Trikala</option>
+                <option value="Serres">Serres</option>
+                <option value="Lamia">Lamia</option>
+                <option value="Alexandroupoli"> 	Alexandroupoli</option>
+                <option value="Kozani">Kozani</option>
+                <option value="Kavala">Kavala</option>
+                <option value="Kalamata">Kalamata</option>
+                <option value="Heraklion">Heraklion</option>
+                <option value="Xanthi">Xanthi</option>
+                <option value="Kozani">Kozani</option>
+                <option value="Chalastra">Chalastra</option>
+            </select>-->
+               

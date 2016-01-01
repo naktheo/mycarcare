@@ -1,0 +1,26 @@
+<div ng-show="mechanicShow">
+  <div class="container">
+    <div class="row row-content">
+        <ul class="media-list">
+            <li class="media" ng-repeat="appointment in appointments | toArray ">
+                <div class="col-xs-12 col-sm-6 ">
+                <div class="media-body">
+                    <h2 class="media-heading">{{appointment.clientID}}</h2>
+                    <p>{{appointment.date}}</p>
+                    <p>{{appointment.time}}</p>
+                    </hr>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="row row-content">
+    {{appointments}}
+</div>
+</div>
+</div>
+<div align="center" ng-show="ownerShow">
+  <div>
+    <h1>Please login as mechanic</h1>
+</div>
+</div>

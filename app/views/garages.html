@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row row-content">
+        <ul class="media-list">
+            <li class="media" ng-repeat="garage in data | toArray | filter:filtText">
+            <div class="media-left media-middle">
+                <img class="media-object img-thumbnail" ng-src={{garage.image}} alt="GARAGES">
+            </div>
+            <div class="media-body">
+                <h2 class="media-heading">{{garage.name}}
+                    <small>{{garage.address}}, </small>
+                    <small>{{garage.city}}</small>
+                </h2>
+                <p>{{garage.description}}</p>
+                 <p>{{garage.$key}}</p>
+            </div>
+        </li>
+    </ul>
+</div>
+    <div class="row row-content">
+    {{data}}
+    </div>
+    <div class="row row-content">
+    {{garageRef}}
+    </div>
+</div>
+               

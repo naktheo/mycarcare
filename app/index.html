@@ -1,0 +1,155 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>mycarCare</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="app/favicon.ico"/>
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/mystyles.css" >
+    <link href="styles/bootstrap-social.css" rel="stylesheet">
+    <link href="styles/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- endbuild -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  </head>
+  <body ng-app="mycarCareApp" ng-controller="IndexCtrl" >
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->   
+<nav id="nav-menu" class="navbar navbar-default navbar-fixed-top" role="navigation"> 
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ng-href="#/">
+          <img src="images/logo.png" height=50 width=50>
+      </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse ng" style="font-family:Verdana, sans-serif"  >
+          <ul class="nav navbar-nav">
+              <li ng-class="{ active: $route.current.activetab == 'main'}">
+                  <a ng-href="#/" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-home"></i> MAIN </a></li>
+             <!-- <li ng-class="{ active: $route.current.activetab == 'garages'}" ng-show="ownerShow">
+                  <a ng-href="#/garages" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-car"></i> GARAGES</a></li>-->
+              <li ng-class="{ active: $route.current.activetab == 'history'}" ng-show="ownerShow">
+                  <a ng-show-auth="" ng-href="#/history" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-book"></i> HISTORY</a></li>
+              <li ng-class="{ active: $route.current.activetab == 'schedule'}" ng-show="mechanicShow">
+                  <a ng-show-auth="" ng-href="#/schedule" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-book"></i> MY SCHEDULE</a></li>
+              <!--<li ng-class="{ active: $route.current.activetab == 'contact'}">
+                  <a ng-href="#/contact" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-envelope-o"></i> CONTACT</a></li>-->
+          </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li ng-class="{ active: $route.current.activetab == 'account'}">
+                <a ng-show-auth="" ng-href="#/account" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-user"></i> ACCOUNT</a>
+            </li>
+            <li ng-class="{ active: $route.current.activetab == 'login'}">
+                <a ng-hide-auth="" ng-href="#/login" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-sign-in"></i> LOGIN</a>
+            </li>
+        </ul>
+    </div>
+  </div> 
+</nav>
+ 
+
+   <div class="jumbotron">
+       
+    </div>
+    <div class="container">
+    <div ng-view=""></div>
+    </div>
+
+    <div class="footer">
+        <div class="container" align=center>
+            <div class="row copyright">
+                <div id="footerfa" align=center>
+                    <a href="http://google.com/+"><i class="fa fa-google-plus fa-2x"></i></a>
+                    <a href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook fa-2x"></i></a>
+                    <a href="http://www.linkedin.com/in/"><i class="fa fa-linkedin fa-2x"></i></a>
+                    <a href="http://twitter.com/"><i class="fa fa-twitter fa-2x"></i></a>
+                    <a href="http://youtube.com/"><i class="fa fa-youtube fa-2x"></i></a>
+                    <a href="mailto:"><i class="fa fa-envelope-o fa-2x"></i></a>
+                </div>
+            </div>
+            <div class="row copyright">
+                <p align=center>Copyright © 2016. Mycarcare.gr</p>
+            </div>
+        </div>
+      </div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-toArrayFilter/toArrayFilter.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->   
+      
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+           <script src="scripts/bower/jquery.js"></script>
+       <script src="scripts/bower/angular.js"></script>
+    <script src="scripts/bower/firebase.js"></script>
+    <script src="scripts/bower/angularfire.js"></script>
+    <script src="scripts/bower/bootstrap.js"></script>
+    <script src="scripts/bower/angular-cookies.js"></script>
+    <script src="scripts/bower/angular-messages.js"></script>
+    <script src="scripts/bower/angular-resource.js"></script>
+    <script src="scripts/bower/angular-route.js"></script>
+    <script src="scripts/bower/toArrayFilter.js"></script>
+    <script src="scripts/bower/angular-animate.js"></script>     
+     <script src="scripts/bower/ui-bootstrap.js"></script>
+      <script src="scripts/bower/ui-bootstrap-tpls.js"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts/angularfire/config.js"></script>
+        <script src="scripts/angularfire/firebase.ref.js"></script>
+        <script src="scripts/controllers/chat.js"></script>
+        <script src="scripts/filters/reverse.js"></script>
+        <script src="scripts/angularfire/auth.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/index.js"></script>
+        <script src="scripts/controllers/book.js"></script>
+        <script src="scripts/controllers/history.js"></script>
+        <script src="scripts/controllers/garages.js"></script>
+        <script src="scripts/controllers/schedule.js"></script>
+        <script src="scripts/controllers/account.js"></script>
+        <script src="scripts/directives/ngShowAuth.js"></script>
+        <script src="scripts/directives/ngHideAuth.js"></script>
+        <script src="scripts/routes.js"></script>
+   
+        <!-- endbuild -->
+      
+</body>
+</html>
+
